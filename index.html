@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pay Up!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-     
+    <main class="main">
+        <section class="square left-side">
+            <h1 class="main-text"><span class="pay-text"> Pay Up! </span> <br> Valida tu tarjeta de crédito.</h1>
+            <p class="text"><span class="pay-text"> Pay Up! </span> es una aplicación web para la verificación de tarjetas de
+                crédito. <br> No almacenamos su información, con <span class="pay-text"> Pay Up! </span> siempre es
+                seguro. </p>
+            <img src="img.png" alt="" class="small">
+        </section>
+        <section class="square right-side">
+            <h3>Ingrese su número de tarjeta de crédito</h3>
+                <div class="flex">
+                    <input type="text" id="card-number" placeholder="ej. 0000-0000-0000-0000" max="16">
+                    <button id="btn-verify">Verificar</button>
+                </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+
+
+
+
+
 </body>
+
 </html>
