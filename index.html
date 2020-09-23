@@ -6,37 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pay Up!</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
 </head>
 
 <body>
     <main class="main">
         <section class="square left-side">
             <h1 class="main-text"><span class="pay-text"> Pay Up! </span> <br> Valida tu tarjeta de crédito.</h1>
-            <p class="text"><span class="pay-text"> Pay Up! </span> es una aplicación web para la verificación de tarjetas de
+            <p class="text"><span class="pay-text"> Pay Up! </span> es una aplicación web para la verificación de
+                tarjetas de
                 crédito. <br> No almacenamos su información, con <span class="pay-text"> Pay Up! </span> siempre es
                 seguro. </p>
-            <img src="img/img.png" alt="" class="small">
+            <img src="img/img.png" alt="" class="img-small">
         </section>
         <section class="square right-side">
             <h3>Ingrese su número de tarjeta de crédito</h3>
-                <div class="flex">
-                    <input type="text" id="card-number" placeholder="ej. 0000000000000000" maxlength="16">
-                    <button id="btn-verify">Verificar</button>
-                </div>
+            <div class="flex">
+                <input type="text" id="card-number" placeholder="ej. 0000000000000000" maxlength="16">
+                <button id="btn-verify">Verificar</button>
+            </div>
         </section>
     </main>
-    
+
     <div id="notification" class="background hide">
-        
+
         <div class="content">
-            <p id="notification-close">X</p>
+            <p class="notification-close close">X</p>
             <img id="img">
             <h1 id="main-message" class="main-text"></h1>
             <h3 id="message"></h3>
-            <div class="buttons">  
+            <div class="buttons-1 ">
+                <button class="btn-close close">Intentarlo de nuevo</button>
+            </div>
+            <div class="buttons-2 hide">
+                <a href=""><img class="logos" src="img/amazon.png" alt="amazon-logo"></a>
+                <a href=""><img class="logos" src="img/ebay.png" alt="amazon-logo"></a>
             </div>
         </div>
+
     </div>
 
     <script src="app.js"></script>

@@ -1,11 +1,11 @@
 const card_number = document.getElementById('card-number');
 const btn_verify = document.getElementById('btn-verify');
 
+// Se verifica si la tarjeta cumple o no los requisitos.
 btn_verify.addEventListener('click', () => {
     let card_trim = card_number.value.replace(/ /g, '');
-    console.log(card_trim);
-    
-    console.log(card_number.value.length);
+    // Se agrega las clases de animate css.
+    box.classList.add('animate__faster','animate__animated', 'animate__zoomIn');
     if (card_number.value.length > 0) {
         if (card_number.value.length >= 15) {
             if (validateNumbers(card_trim)) {
@@ -26,6 +26,7 @@ btn_verify.addEventListener('click', () => {
 
 });
 
+// Función para el algoritmo de Luhn
 const verifyCard = num => {
     /* Obtenemos los números y los separamos en cada posición.  */
     let array = ("" + num).split("").map(Number);
@@ -54,8 +55,7 @@ const verifyCard = num => {
     //Se suman los números dentro del arreglo.
     let total = 0;
     array.forEach(el => { total += el; });
-    console.log(total);
-    
+
     total % 10 == 0 ? total = true : total = false;
 
     return total;
@@ -74,7 +74,7 @@ const img = document.getElementById('img');
 const main_msg = document.getElementById('main-message');
 const message = document.getElementById('message');
 const notification = document.getElementById('notification');
-const notification_close = document.getElementById('notification-close');
+const message_close = document.querySelectorAll('.close');
 
 const displayMessage = (resp, card) => {
     notification.classList.remove('hide');
@@ -100,7 +100,7 @@ const displayMessage = (resp, card) => {
             img.setAttribute('src', 'img/error.png');
             break;
         case 'valid':
-            let card_show = card.replace(/(.)(?=.{4,}$)/g,'*');
+            let card_show = (card.substring(0, card.length-4)).replace(/[0-9]/g,'*') + card.substring(card.length - 4);
             main_msg.innerText = 'Éxito';
             img.setAttribute('src', 'img/check.png');
             message.innerText = `Su tarjeta ${card_show} es válida, felices compras!`;
@@ -108,14 +108,19 @@ const displayMessage = (resp, card) => {
         default:
             break;
     }
-    // (.{4}$)
 }
 
-notification_close.addEventListener('click',()=>{
-    notification.classList.add('hide');
-    card_number.value = '';
+const box = document.querySelector('div .content');
+
+message_close.forEach(el =>{
+    el.addEventListener('click', () => {
+        notification.classList.add('hide');
+        box.classList.remove('animate__faster','animate__animated', 'animate__zoomIn');
+        card_number.value = '';
+    });
 });
 
-// let num = 4137894711755904;
-// //4137894711755904
-// //4083952015263
+
+// 4137894711755904;
+// 4137894711755904
+// 4083952015263
