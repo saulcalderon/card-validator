@@ -2,39 +2,46 @@ const card_number = document.getElementById('card-number');
 const btn_verify = document.getElementById('btn-verify');
 
 btn_verify.addEventListener('click', () => {
-    console.log(card_number.value.length);
+    let card_trim = card_number.value.replace(/ /g, '');
+    console.log(card_trim);
     
-    if (card_number.value.length > 0 ) {
-        if (validateNumbers(card_number.value)) {
-            verifyCard(parseInt(card_number.value));
-        }else{
-            console.log('Falso');
+    console.log(card_number.value.length);
+    if (card_number.value.length > 0) {
+        if (card_number.value.length >= 15) {
+            if (validateNumbers(card_trim)) {
+                if (verifyCard(card_trim)) {
+                    displayMessage('valid', card_trim);
+                } else {
+                    displayMessage('invalid', card_trim);
+                }
+            } else {
+                displayMessage('numbers', card_trim);
+            }
+        } else {
+            displayMessage('length', card_trim);
         }
     } else {
-        console.log('Vacío');
+        displayMessage('empty', card_trim);
     }
-    
+
 });
 
-function verifyCard(num) {
+const verifyCard = num => {
     /* Obtenemos los números y los separamos en cada posición.  */
     let array = ("" + num).split("").map(Number);
 
-    // Colocamos al revés los números del arreglo.
     array.reverse();
 
     for (let i = 0; i < array.length; i++) {
         // Evaluamos las posiciones impares ya que comenzamos desde el 0.
         if (i % 2 == 1) {
-
             //Se inserta el doble del número en la posición impar.
             array.splice(i, 1, array[i] * 2);
 
-            //Se evalúa si el doble del número es mayor a 10
             if (array[i] >= 10) {
                 //Se dividen los dígitos de los números mayores a 10.
                 let array_double = ("" + array[i]).split("").map(Number);
-                //Se suman los dígitos.
+
                 let sum_digit;
                 array_double.forEach((el) => {
                     sum_digit = ++el;
@@ -46,60 +53,69 @@ function verifyCard(num) {
     }
     //Se suman los números dentro del arreglo.
     let total = 0;
-    array.forEach(el => {
-        total += el;
-    });
+    array.forEach(el => { total += el; });
     console.log(total);
+    
+    total % 10 == 0 ? total = true : total = false;
+
+    return total;
 }
 
-function validateNumbers(num){
+
+const validateNumbers = num => {
     if (isNaN(num)) {
         return false;
-    }else{
+    } else {
         return true;
     };
 }
 
+const img = document.getElementById('img');
+const main_msg = document.getElementById('main-message');
+const message = document.getElementById('message');
+const notification = document.getElementById('notification');
+const notification_close = document.getElementById('notification-close');
+
+const displayMessage = (resp, card) => {
+    notification.classList.remove('hide');
+    switch (resp) {
+        case 'empty':
+            main_msg.innerText = 'Oops, algo salió mal...';
+            message.innerText = 'Debe completar el campo.';
+            img.setAttribute('src', 'img/error.png');
+            break;
+        case 'length':
+            main_msg.innerText = 'Oops, algo salió mal...';
+            message.innerText = 'El número debe tener al menos 15 dígitos.';
+            img.setAttribute('src', 'img/error.png');
+            break;
+        case 'numbers':
+            main_msg.innerText = 'Oops, algo salió mal...';
+            message.innerText = 'Por favor no ingresar caracteres distintos a números.';
+            img.setAttribute('src', 'img/error.png');
+            break;
+        case 'invalid':
+            main_msg.innerText = 'Oops, algo salió mal...';
+            message.innerText = `Su tarjeta es inválida, por favor inténtelo de nuevo.`;
+            img.setAttribute('src', 'img/error.png');
+            break;
+        case 'valid':
+            let card_show = card.replace(/(.)(?=.{4,}$)/g,'*');
+            main_msg.innerText = 'Éxito';
+            img.setAttribute('src', 'img/check.png');
+            message.innerText = `Su tarjeta ${card_show} es válida, felices compras!`;
+            break;
+        default:
+            break;
+    }
+    // (.{4}$)
+}
+
+notification_close.addEventListener('click',()=>{
+    notification.classList.add('hide');
+    card_number.value = '';
+});
+
 // let num = 4137894711755904;
 // //4137894711755904
 // //4083952015263
-
-
-
-
-// let num = 4137894711755904 ;
-// //4137894711755904
-// //4083952015263
-
-// /* Obtenemos los números y los separamos en cada posición.  */
-// let array = ("" + num).split("").map(Number);
-
-// // Colocamos al revés los números del arreglo.
-// array.reverse();
-
-
-// for (let i = 1; i <= array.length; i++) {
-//   // Evaluamos los números que son pares.
-//   if (i % 2 == 0) {
-
-//     array.splice(i - 1, 1, array[i - 1] * 2);
-
-//     if (array[i - 1] >= 10) {
-
-//       let newNum = ("" + array[i - 1]).split("").map(Number);
-
-//       let numw;
-//       newNum.forEach((element) => {
-//         numw = ++element;
-//       });
-
-//       array.splice(i - 1, 1, numw);
-//     }
-//   }
-// }
-
-// let total=0;
-// array.forEach(el=> {
-//     total += el;
-// });
-// console.log(total);

@@ -9,25 +9,27 @@
     width: 100%;
 
 }
-h1 span{
+
+h1 span {
     font-size: 50px;
     line-height: 85px;
 }
 
-.main-text{
+.main-text {
     font-size: 2rem;
     margin: 25px 0;
 }
-.pay-text{
-    color: #ffa411 ;
+
+.pay-text {
+    color: #ffa411;
 }
 
-.text{
+.text {
     font-size: 16px;
     margin: 15px 0;
 }
 
-h3{
+h3 {
     color: rgb(43, 43, 43);
 }
 
@@ -41,33 +43,73 @@ h3{
 }
 
 .right-side {
-    display: flex;
-    justify-content: center;
     align-items: center;
     background-color: #ffa411;
 }
-.flex{
+
+.flex {
     display: flex;
     flex-direction: column;
     width: 40%;
 }
 
-.small{
+.small {
     margin-top: 30px;
     width: 70%;
 }
 
-input{
+input {
     border: none;
     border-radius: 5px;
     margin: 25px 0;
     padding: 12px;
 }
 
-button{
+button {
     border: none;
     border-radius: 5px;
     box-shadow: 3px 3px 3px #bd8030;
     padding: 12px;
     font-size: 16px;
+    cursor: pointer;
+}
+
+.background {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 700px;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+}
+
+.content {
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    top: 150px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    height: 400px;
+    padding: 20px;
+    text-align: center;
+} 
+
+.hide{
+    visibility: hidden;
+}
+
+#message{
+    font-weight: 400;
+    padding: 15px;
+}
+
+#notification-close{
+    cursor: pointer;
+    position: absolute ;
+    right: 30px; 
+    font-size: 22px;  
 }
