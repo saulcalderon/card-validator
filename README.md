@@ -1,1 +1,1 @@
-# card-validator
+# Pay Up! - Credit card validator
